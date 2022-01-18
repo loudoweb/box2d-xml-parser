@@ -19,10 +19,12 @@ class Box2DParser
 {
 	static var spaces:EReg = new EReg(" ", "g");
 
-	public static function parse(xml_string:String):Body
+	public static function parse(xml_string:String):Array<Body>
 	{
 		var xml:Xml = Xml.parse(xml_string).firstElement();
 		var fast:Access = new Access(xml);
+		
+		var bodies:Array<Body> = [];
 		for (body in fast.node.bodies.nodes.body)
 		{
 			var anchor = body.node.anchorpoint.innerData.split(",");
@@ -75,8 +77,9 @@ class Box2DParser
 				
 			}
 			_body.fixture = fixtures;
+			bodies.push(_body);
 		}
-		return null;
+		return bodies;
 	}
 	
 }
