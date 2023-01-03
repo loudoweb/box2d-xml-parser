@@ -28,7 +28,22 @@ function trimmer(name:String, isX:Bool):Float
 
 ```
 
+Then you can get a specific polygon by looping through all objects:
+
+```haxe
+
+for (body in box2dData)
+{
+	trace("body of", body.name)
+	var vertices:Array<Array<Float>> = body.fixture[0].polygons;
+	//do whatever you want with all these points (I personaly convert to vector or points depending of the engine used)
+}
+
+```
+
+
 ## TODO
 
+- [ ] make a convenient generic method to give all points in the user format
 - [ ] make it directly compatible with [box2d](https://github.com/openfl/box2d) using box2d internal classes
 
